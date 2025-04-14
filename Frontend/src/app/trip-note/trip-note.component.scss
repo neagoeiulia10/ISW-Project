@@ -1,0 +1,71 @@
+mat-card{
+    max-width: 400px;
+    max-height: fit-content;
+    margin: 20px;
+    box-shadow: 0 2px 10px rgb(3, 3, 3);
+    border-radius: 10px;
+    padding: 16px;
+   
+}.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-wrapper {
+  box-sizing: border-box;
+  margin-bottom: 16px; /* Optional: Adjust the bottom margin for spacing between rows */
+}
+
+
+mat-card-header{
+  display: inline-block;
+}
+.selected {
+  color: gold;
+}
+
+mat-card-title{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+mat-card-subtitle{
+    font-size: 1em;
+
+}
+mat-card-actions {
+    display: flex;
+    justify-content: center;
+  }
+button{
+    color: white;
+    background-color: black;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    
+}
+.stars {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  mat-icon stars {
+    font-size: 2em;
+    cursor: pointer;
+    color: #ccc;
+  }
+  
+  mat-icon.selected {
+    color: gold;
+  }
+  #edit{
+    float: inline-start;
+  }
+  #delete{
+    float: inline-end;
+  }
+  img{
+width: 350px;
+height: 200px;
+  }

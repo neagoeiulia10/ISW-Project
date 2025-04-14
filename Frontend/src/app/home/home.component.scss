@@ -1,0 +1,47 @@
+spacer {
+  display: flex;
+  background-color: white;
+  color: #3b5da4;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  margin: 10px;
+  align-items: center;
+}
+
+
+.mat-toolbar {
+  background-color: #3b5da4;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+p {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.buttons {
+  display: flex;
+  gap: 80px; /* Adjust the gap as needed */
+}
+.mat-sidenav{
+  padding: 10px;
+}
+.mat-drawer-container {
+   display: unset;
+}
+.filters{
+ 
+  margin: 10px;
+  display: flex;
+  background-color: white;
+  color: #3b5da4;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  align-items: center;
+}
