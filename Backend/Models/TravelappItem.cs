@@ -7,7 +7,7 @@ public class TravelappItem
     public DateTime DateFrom { get; set; }
     public DateTime DateTo { get; set; }
     public string Description { get; set; }
-    public string? ImageUrl { get; set; }
+    public string ImageUrl { get; set; }
     public long Rating { get; set; }
 
 
