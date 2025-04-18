@@ -37,6 +37,10 @@ import { TripNoteComponent } from '../trip-note/trip-note.component';
     <h2>Edit Trip Note</h2>
     <form [formGroup]="tripForm" (ngSubmit)="save()">
       <mat-form-field>
+        <mat-label>Place</mat-label>
+        <input matInput formControlName="place" (ngModelChange)="enableSaveButton()">
+      </mat-form-field>
+      <mat-form-field>
         <mat-label>Description</mat-label>
         <input matInput formControlName="description" (ngModelChange)="enableSaveButton()">
       </mat-form-field>
@@ -55,6 +59,13 @@ import { TripNoteComponent } from '../trip-note/trip-note.component';
       <mat-error *ngIf="tripForm.hasError('dateRange')">
         From Date should be earlier than To Date
       </mat-error>
+      <mat-form-field>
+        <mat-label>Image URL</mat-label>
+        <input matInput formControlName="imageUrl" (ngModelChange)="enableSaveButton()">
+        <mat-error *ngIf="tripForm.get('imageUrl')?.hasError('required')">
+          Image URL is required
+        </mat-error>
+      </mat-form-field>
       <mat-form-field>
       <mat-label>Rating</mat-label>
       <mat-select formControlName="rating" (ngModelChange)="enableSaveButton()">
@@ -81,15 +92,16 @@ export class EditTripModalComponent {
   tripForm: FormGroup;
 
   constructor(
-
     public dialogRef: MatDialogRef<EditTripModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: TripNote,
     private fb: FormBuilder
   ) {
     this.tripForm = this.fb.group({
+      place: [data.place, Validators.required],
       description: [data.description, Validators.required],
       dateFrom: [data.dateFrom, [Validators.required, this.dateValidator]],
       dateTo: [data.dateTo, Validators.required],
+      imageUrl: [data.imageUrl, Validators.required],
       rating: [data.rating, [Validators.required, Validators.min(1), Validators.max(5)]]
     }, { validators: this.rangeValidator }
     );
