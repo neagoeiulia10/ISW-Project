@@ -4,21 +4,21 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-interface LoginResponse {
+interface RegisterResponse {
   success: boolean;
   message: string;
 }
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   template: `
-<div class="login-container">
-  <div class="login-card">
-    <h2>Welcome Back</h2>
+<div class="register-container">
+  <div class="register-card">
+    <h2>Create Account</h2>
 
-    <form (ngSubmit)="login()" class="login-form" #loginForm="ngForm">
+    <form (ngSubmit)="register()" class="register-form" #registerForm="ngForm">
       <div class="form-group">
         <input 
           type="text" 
@@ -43,20 +43,20 @@ interface LoginResponse {
         {{ errorMessage }}
       </div>
 
-      <button type="submit" class="login-button" [disabled]="!loginForm.form.valid || isLoading">
-        {{ isLoading ? 'Logging in...' : 'Login' }}
+      <button type="submit" class="register-button" [disabled]="!registerForm.form.valid || isLoading">
+        {{ isLoading ? 'Creating Account...' : 'Register' }}
       </button>
 
-      <div class="register-link">
-        Don't have an account? <a routerLink="/register">Register here</a>
+      <div class="login-link">
+        Already have an account? <a routerLink="/">Login here</a>
       </div>
     </form>
   </div>
 </div>
   `,
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent {
+export class RegisterComponent {
   username: string = '';
   password: string = '';
   isLoading: boolean = false;
@@ -64,7 +64,7 @@ export class LoginComponent {
 
   constructor(private router: Router, private http: HttpClient) {}
 
-  login() {
+  register() {
     // Reset error message
     this.errorMessage = '';
     
@@ -76,9 +76,9 @@ export class LoginComponent {
 
     this.isLoading = true;
     
-    console.log('Attempting login for user:', this.username);
+    console.log('Attempting to register user:', this.username);
     
-    this.http.post<LoginResponse>('http://localhost:5001/api/auth/login', {
+    this.http.post<RegisterResponse>('http://localhost:5001/api/auth/register', {
       username: this.username,
       password: this.password
     }).subscribe({
@@ -86,22 +86,19 @@ export class LoginComponent {
         console.log('Server response:', response);
         this.isLoading = false;
         
-        // Strict check for success flag
         if (response && response.success === true) {
-          console.log('Login successful, navigating to travel app');
-          this.router.navigate(['/travelapp']);
+          console.log('Registration successful, redirecting to login');
+          this.router.navigate(['/']);
         } else {
-          console.log('Login failed:', response?.message);
-          this.errorMessage = response?.message || 'Username or password incorrect';
+          console.log('Registration failed:', response?.message);
+          this.errorMessage = response?.message || 'Registration failed';
         }
       },
       error: (error: HttpErrorResponse) => {
-        console.error('Login error:', error);
+        console.error('Registration error:', error);
         this.isLoading = false;
         
-        if (error.status === 401) {
-          this.errorMessage = 'Username or password incorrect';
-        } else if (error.status === 400) {
+        if (error.status === 400) {
           this.errorMessage = error.error?.message || 'Invalid input';
         } else {
           this.errorMessage = 'Server error. Please try again.';
@@ -109,4 +106,4 @@ export class LoginComponent {
       }
     });
   }
-}
+} 

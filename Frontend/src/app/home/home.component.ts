@@ -21,6 +21,7 @@ import { Toast, ToastrModule, ToastrService } from 'ngx-toastr';
 import { ToastService } from '../toast.service';
 import { ToastComponent } from "../toast/toast.component";
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -47,6 +48,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
   template: `
     <mat-toolbar color="primary">
       <p>Travel App</p>
+      <button mat-icon-button (click)="signOut()" class="signout-button">
+        <mat-icon>logout</mat-icon>
+      </button>
     </mat-toolbar>
 
     <div class="controls-container">
@@ -167,7 +171,8 @@ export class HomeComponent {
     private dialog: MatDialog,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<NewTripDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: TripNote
+    @Inject(MAT_DIALOG_DATA) public data: TripNote,
+    private router: Router
   ) {
     this.filterForm = this.fb.group({
       rating: [null],
@@ -316,5 +321,10 @@ export class HomeComponent {
   clearSearch(): void {
     this.searchForm.get('searchTerm')?.setValue('');
     this.service.tripNotes.set(this.service.getTripNotes());
+  }
+
+  signOut() {
+    // Aici poți adăuga logica pentru curățarea datelor de sesiune dacă este cazul
+    this.router.navigate(['/']);
   }
 }

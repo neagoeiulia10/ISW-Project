@@ -12,7 +12,7 @@ body, html {
   overflow: hidden;
 }
 
-.login-container {
+.register-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,7 +30,7 @@ body, html {
   padding: 1rem;
 }
 
-.login-card {
+.register-card {
   background: rgba(255, 255, 255, 0.9);
   padding: 2.5rem;
   border-radius: 20px;
@@ -39,7 +39,7 @@ body, html {
   max-width: 400px;
 }
 
-.login-form {
+.register-form {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -86,7 +86,7 @@ h2 {
   border-radius: 6px;
 }
 
-.login-button {
+.register-button {
   width: 100%;
   padding: 0.875rem;
   background-color: #4a69bd;
@@ -110,7 +110,7 @@ h2 {
   }
 }
 
-.register-link {
+.login-link {
   text-align: center;
   margin-top: 1.5rem;
   color: #666;
@@ -126,4 +126,4 @@ h2 {
       text-decoration: underline;
     }
   }
-}
+} 
