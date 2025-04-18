@@ -6,6 +6,7 @@ public class TravelappContext : DbContext
     {
 
     }
-    public DbSet<TravelappItem> TravelappItems { get; set; } = null;
+    public DbSet<TravelappItem> TravelappItems { get; set; } = null!;
+    public DbSet<User> Users { get; set; } = null!;
 }
 
