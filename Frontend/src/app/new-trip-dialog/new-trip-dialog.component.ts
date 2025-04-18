@@ -31,10 +31,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     <div class="dialog-container">
       <mat-toolbar>
         <span>Add New Trip</span>
-        <span class="spacer"></span>
-        <button mat-icon-button (click)="onClose()">
-          <mat-icon>close</mat-icon>
-        </button>
+        
       </mat-toolbar>
       
       <div class="dialog-content">
@@ -85,51 +82,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
       </div>
     </div>
   `,
-  styles: [`
-    .dialog-container {
-      display: flex;
-      flex-direction: column;
-      padding: 0;
-    }
-    
-    .dialog-content {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    
-    .dialog-actions {
-      padding: 16px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-    }
-    
-    .rating {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    
-    .stars {
-      display: flex;
-      gap: 4px;
-    }
-    
-    .stars mat-icon {
-      cursor: pointer;
-      color: #ccc;
-    }
-    
-    .stars mat-icon.selected {
-      color: #ffd700;
-    }
-    
-    .spacer {
-      flex: 1 1 auto;
-    }
-  `]
+  
+  styleUrls: ['./new-trip-dialog.component.scss']
+
 })
 export class NewTripDialogComponent {
   newTrip: TripNote = {

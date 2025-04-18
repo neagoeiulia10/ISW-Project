@@ -7,10 +7,61 @@ mat-card {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     padding: 20px;
     transition: transform 0.2s ease-in-out;
+
+    mat-card-subtitle {
+        color: #666;
+        font-size: 1em;
+        line-height: 1.4;
+        margin-bottom: 12px;
+    }
+
+    .rating {
+        color: #3b5da4;
+        font-weight: 500;
+        text-align: center;
+        margin-top: 16px;
+    }
+
+    mat-form-field {
+        .mat-mdc-form-field-infix {
+            color: #2c3e50;
+        }
+        
+        input {
+            color: #2c3e50 !important;
+        }
+
+        mat-label {
+            color: #3b5da4;
+            font-weight: 500;
+        }
+    }
+
+    .stars {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        
+        mat-icon {
+            color: #d4d4d4;
+            transition: color 0.2s ease;
+            cursor: pointer;
+
+            &.selected {
+                color: #ffd700;
+            }
+
+            &:hover {
+                color: #ffd700;
+            }
+        }
+    }
 }
+
 mat-card:hover {
     transform: translateY(-5px);
 }
+
 .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -45,8 +96,33 @@ mat-card-content {
 
 mat-card-actions {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 16px;
     margin-top: auto;
+
+    button {
+        &[id="edit"] {
+            background-color: #3b5da4;
+            color: white;
+            
+            &:hover {
+                background-color: #4b6db4;
+            }
+        }
+
+        &[id="delete"] {
+            background-color: #dc3545;
+            color: white;
+            
+            &:hover {
+                background-color: #bb2d3b;
+            }
+        }
+
+        mat-icon {
+            font-size: 20px;
+        }
+    }
 }
 
 .selected {
@@ -57,10 +133,7 @@ mat-card-title{
   font-size: 1.2rem;
   font-weight: bold;
 }
-mat-card-subtitle{
-    font-size: 1em;
 
-}
 button{
     color: white;
     background-color: black;
@@ -69,24 +142,66 @@ button{
     margin-left: 10px;
     
 }
-.stars {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-  }
-  
-  mat-icon stars {
-    font-size: 2em;
-    cursor: pointer;
-    color: #ccc;
-  }
-  
-  mat-icon.selected {
-    color: gold;
-  }
-  #edit{
+
+#edit{
     float: inline-start;
-  }
-  #delete{
+}
+#delete{
     float: inline-end;
-  }
+}
+
+.view-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    justify-content: center;
+    width: 100%;
+
+    button {
+        background-color: rgba(59, 93, 164, 0.1);
+        transition: all 0.3s ease;
+        color: #3b5da4;
+
+        &.active {
+            background-color: #3b5da4;
+            color: white;
+        }
+
+        &:hover {
+            transform: translateY(-2px);
+            background-color: rgba(59, 93, 164, 0.2);
+        }
+
+        mat-icon {
+            font-size: 20px;
+        }
+    }
+}
+
+.media-container {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    transition: opacity 0.3s ease;
+    margin-bottom: 16px;
+
+    &.fade {
+        opacity: 0;
+    }
+
+    .media-item {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+}
+
+.mini-map {
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
