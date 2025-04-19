@@ -15,7 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditTripModalComponent } from '../edit-trip-modal/edit-trip-modal.component';
 import { FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Map, map, tileLayer, marker, LatLng } from 'leaflet';
+import { Map, map, tileLayer } from 'leaflet';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @Component({
@@ -76,6 +76,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
             <mat-form-field>
               <mat-label>Start date</mat-label>
               <input matInput [matDatepicker]="picker1" [(ngModel)]="tripNote.dateFrom" readonly>
+              <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1 disabled="true"></mat-datepicker>
             </mat-form-field>
@@ -195,11 +196,9 @@ export class TripNoteComponent implements AfterViewInit {
       const mapInstance = map(mapId, {
         zoomControl: false,
         dragging: false,
-        scrollWheelZoom: false,
-        attributionControl: false // Remove attribution for cleaner look
+        scrollWheelZoom: false
       }).setView([0, 0], 13);
 
-      // Add OpenStreetMap tiles with a slightly custom style
       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
       }).addTo(mapInstance);
@@ -211,8 +210,8 @@ export class TripNoteComponent implements AfterViewInit {
         const lat = parseFloat(data[0].lat);
         const lon = parseFloat(data[0].lon);
         
-        // Set view with a closer zoom level for better context
-        mapInstance.setView([lat, lon], 11);
+        // Just set the view to the location, without adding a marker
+        mapInstance.setView([lat, lon], 13);
       }
 
       this.maps[mapId] = mapInstance;

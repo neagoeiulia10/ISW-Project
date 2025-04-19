@@ -98,7 +98,7 @@ import { Router } from '@angular/router';
     </div>
 
     <mat-sidenav-container class="sidenav-container">
-      <mat-sidenav #sidenav mode="side" position="end">
+      <mat-sidenav #sidenav mode="side" position="end" style="height: 82%">
         <mat-toolbar>
           <span>Filter</span>
           <button mat-button (click)="clearAllFilters()"><mat-icon>clear_all</mat-icon></button>
@@ -134,8 +134,8 @@ import { Router } from '@angular/router';
             </div>
           </form>
         </div>
-        <button class="filters" mat-button (click)="applyFilters()">Apply Filters</button>
         <button class="filters" mat-button (click)="closeFilters()">Close Filter</button>
+        <button class="filters" mat-button (click)="applyFilters()">Apply Filters</button>
       </mat-sidenav>
 
       @if (service.tripNotes().length > 0) {

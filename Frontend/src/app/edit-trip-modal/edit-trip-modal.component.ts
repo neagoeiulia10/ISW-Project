@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { TripNoteComponent } from '../trip-note/trip-note.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-edit-trip-modal',
@@ -30,12 +31,15 @@ import { TripNoteComponent } from '../trip-note/trip-note.component';
     MatCardModule,
     MatIconModule,
     MatSelectModule,
+    MatToolbarModule
   ],
   providers: [provideNativeDateAdapter(), MatDatepickerModule],
   template: `
   <mat-card>
-    <h2>Edit Trip Note</h2>
-    <form [formGroup]="tripForm" (ngSubmit)="save()">
+  <mat-toolbar>
+  <span>Edit Trip</span>
+  </mat-toolbar>
+    <form  class="form" [formGroup]="tripForm" (ngSubmit)="save()">
       <mat-form-field>
         <mat-label>Place</mat-label>
         <input matInput formControlName="place" (ngModelChange)="enableSaveButton()">
@@ -81,8 +85,8 @@ import { TripNoteComponent } from '../trip-note/trip-note.component';
       </mat-error>
     </mat-form-field>
     <br>
-      <button mat-fab type="button" (click)="cancel()"><mat-icon>cancel</mat-icon></button>
-      <button mat-fab type="submit" [disabled]="!isSaveEnabled || tripForm.invalid"><mat-icon>save</mat-icon></button>
+      <button  class="cancel-button" mat-fab type="button" (click)="cancel()"><mat-icon>cancel</mat-icon></button>
+      <button  class="save-button" mat-fab type="submit" [disabled]="!isSaveEnabled || tripForm.invalid"><mat-icon>save</mat-icon></button>
     </form>
   </mat-card>`,
   styleUrls: ['./edit-trip-modal.component.scss']
