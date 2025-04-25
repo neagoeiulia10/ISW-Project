@@ -26,7 +26,7 @@ services:
       - backend
 
   db:
-    image: sqlite/sqlite:latest
+    image: alpine:latest
     volumes:
       - ./Backend/data:/data
-    command: ["/bin/sh", "-c", "touch /data/Traveldb.db && chmod 777 /data/Traveldb.db"] 
+    command: ["/bin/sh", "-c", "apk add --no-cache sqlite && touch /data/Traveldb.db && chmod 777 /data/Traveldb.db"] 
