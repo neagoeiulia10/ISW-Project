@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Backend/Dockerfile
+    ports:
+      - "5000:80"
+      - "5001:443"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Data Source=/app/data/Traveldb.db
+    volumes:
+      - ./Backend/data:/app/data
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+  db:
+    image: sqlite/sqlite:latest
+    volumes:
+      - ./Backend/data:/data
+    command: ["/bin/sh", "-c", "touch /data/Traveldb.db && chmod 777 /data/Traveldb.db"] 
